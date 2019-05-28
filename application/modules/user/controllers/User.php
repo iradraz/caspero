@@ -14,6 +14,54 @@ class User extends MY_Controller {
         
     }
 
+    private function hash_password($password) {
+        return password_hash($password, PASSWORD_BCRYPT);
+    }
+
+    function verify_pass() {
+        $answer = password_verify('1234567', '$2y$10$FmBeDQSMFtMRZEcjlwVn5uwEZ3P8BgniuG4yn5eWeoQemfiSklENC');
+        echo $answer;
+    }
+
+    function register_user() {
+        $this->form_validation->set_rules('first', 'First Name', 'required|min_length[2]|max_length[20]');
+        $this->form_validation->set_rules('last', 'Last Name', 'required|min_length[2]|max_length[20]');
+        $this->form_validation->set_rules('phone', 'Phone Number', 'num_dash|min_length[10]|max_length[15]');
+        $this->form_validation->set_rules('email', 'Email Address', 'required|valid_email|is_unique[user.user_email]');
+        $this->form_validation->set_rules('pswd', 'Password', 'required|min_length[6]|max_length[20]');
+        $this->form_validation->set_rules('pswdvrfy', 'Password Verification', 'required|matches[pswd]');
+        $post_data = $this->input->post();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->register();
+        } else {
+            $post_data = $this->input->post();
+            $data = array(
+                'user_firstname' => $post_data['first'],
+                'user_lastname' => $post_data['last'],
+                'user_phone' => $post_data['phone'],
+                'user_email' => $post_data['email'],
+                'user_password' => $this->hash_password($post_data['pswd']),
+                'user_role' => 'free',
+                'user_registered_date' => date("Y-m-d H:i:s")
+            );
+
+            $session_data = array(
+                'user_id' => $this->_insert($data),
+                'user_email' => $data['user_email']
+            );
+            $this->session->set_userdata($session_data);
+            $last_seen = array('user_last_login' => date("Y-m-d H:i:s"));
+            $this->_update($session_data['user_id'], $last_seen);
+        }
+    }
+
+    function show_session() {
+        $session_data = $this->session->userdata();
+        $last_seen = array('user_last_login' => date("Y-m-d H:i:s"));
+        $this->_update($session_data['user_id'], $last_seen);
+    }
+
     function register() {
         $this->load->helper('form');
 
@@ -21,12 +69,29 @@ class User extends MY_Controller {
         $this->templates->landing($data);
     }
 
-    function login() {
-        $name = $this->input->post('username', true);
-        if ($name == 'hi') {
-            echo $name;
-            die;
+    function login_user() {
+        $post_data = $this->input->post();
+        $data = $this->get_where_custom('user_email', $post_data['email'])->result_array();
+        if (password_verify($post_data['password'], $data[0]['user_password']) == 1) {
+            echo 'can proceed';
+            $session_data = array(
+                'user_id' => $data[0]['user_id'],
+                'user_email' => $data[0]['user_email']
+            );
+            $this->session->set_userdata($session_data);
+            $last_seen = array('user_last_login' => date("Y-m-d H:i:s"));
+            $this->_update($session_data['user_id'], $last_seen);
+            
+            echo '<pre>';
+            print_r($this->session->userdata());
+            echo '</pre>';
+        } else {
+            echo 'login failed';
         }
+    }
+
+    function login() {
+
         $data['content_view'] = 'user/login_v';
         $this->templates->landing($data);
     }

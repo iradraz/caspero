@@ -1335,7 +1335,16 @@ class CI_Form_validation {
 	{
 		return (bool) preg_match('/^[a-z0-9_-]+$/i', $str);
 	}
-
+        
+        /** Irad edition
+         * 
+         * @param type $str
+         * @return type
+         */
+	public function num_dash($str)
+	{
+		return (bool) preg_match('/^[0-9+_-]+$/i', $str);
+	}
 	// --------------------------------------------------------------------
 
 	/**
