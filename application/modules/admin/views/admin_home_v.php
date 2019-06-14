@@ -35,20 +35,4 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.leftmenutrigger').on('click', function (e) {
-                $('.side-nav').toggleClass("open");
-                e.preventDefault();
-            });
-        });</script>
-
-
-    <script type="text/javascript">
-        (function ($) {
-            $('#theme_chooser').change(function () {
-                whichCSS = $(this).val();
-                document.getElementById('snippet-preview').contentWindow.changeCSS(whichCSS);
-            });
-        })(jQuery);
     </script>

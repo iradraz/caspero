@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h5 class="card-title text-center">Feedback Section</h5>
                 <h6 class="card-subtitle mb-2 text-muted"></h6>
-                <p class="card-text text-center">We will be generating all the feedbacks of the system from the database soon</p>
+                <p class="card-text text-center">Generated all the feedbacks of the system from the database</p>
                 <a href="#" class="card-link"></a>
                 <a href="#" class="card-link"></a>
             </div>
@@ -29,24 +29,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        <?php  //echo '<pre>'; print_r($feedback_data); echo '</pre>'; die ; ?>
+                        <?php foreach ($feedback_data as $key => $value) { ?>
+                            <?php echo '<tr>'; ?>
+                            <?php echo '<th scope="row">'.$feedback_data[$key]['feedback_id'].'</th>'; ?>
+                            <?php echo '<td>'.$feedback_data[$key]['user_firstname'].'</td>'; ?>
+                            <?php echo '<td>'.$feedback_data[$key]['user_lastname'].'</td>'; ?>
+                            <?php echo '<td>' . $feedback_data[$key]['feedback_text'] . '</td>'; ?>
+                            <?php echo '</tr>';
+                        } ?>
                     </tbody>
                 </table>
             </div>

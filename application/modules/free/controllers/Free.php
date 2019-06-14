@@ -4,10 +4,31 @@
 //        print_r($data);
 //        echo '</pre>';
 //        die;
+//  Modules::run('templates/controller/landing',$data);
 class Free extends MY_Controller {
 
     function __construct() {
         parent::__construct();
+    }
+
+    function feedback_post() {
+        $session_data = $this->session->userdata();
+        $this->form_validation->set_rules('feedback_text', 'Feedback Text', 'required|max_length[300]');
+        $post_data = $this->input->post();
+        if ($this->form_validation->run() == FALSE) {
+            $this->feedback();
+        } else {
+            if ($session_data['user_role'] == 'free') {
+
+                $data = array(
+                    'user_id' => $session_data['user_id'],
+                    'feedback_text' => $post_data['feedback_text'],
+                );
+                $this->load->module('feedback');
+                $this->feedback->_insert($data);
+                redirect(base_url('/home/'));
+            }
+        }
     }
 
     function feedback() {

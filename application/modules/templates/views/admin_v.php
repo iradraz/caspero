@@ -5,7 +5,6 @@
         <meta charset="utf-8">
         <meta name="robots" content="noindex, nofollow"> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <style type="text/css">
             body{background:#f9f9f9;}
             #wrapper{padding:90px 15px;}
@@ -22,7 +21,7 @@
             .animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out} </style>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity = "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin = "anonymous">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <title>Caspero Admin Dashboard</title>
     </head>
     <body>
@@ -45,7 +44,7 @@
                             <a class="nav-link" href="<?php echo base_url('/admin/feedback'); ?>">Review Feedbacks</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="<?php //echo base_url('/admin/pricing');  ?>">Pricing</a>
+                            <a class="nav-link disabled" href="<?php //echo base_url('/admin/pricing');   ?>">Pricing</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo base_url('/home/logout'); ?>">Logout</a>
@@ -59,4 +58,19 @@
             ?>
         </div>
     </body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.leftmenutrigger').on('click', function (e) {
+                $('.side-nav').toggleClass("open");
+                e.preventDefault();
+            });
+        });</script>
+    <script type="text/javascript">
+        (function ($) {
+            $('#theme_chooser').change(function () {
+                whichCSS = $(this).val();
+                document.getElementById('snippet-preview').contentWindow.changeCSS(whichCSS);
+            });
+        })(jQuery);
+    </script>
 </html>

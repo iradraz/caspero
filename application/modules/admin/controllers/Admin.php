@@ -17,8 +17,19 @@ class Admin extends MY_Controller {
     function feedback() {
         $session_data = $this->session->userdata();
         if ($session_data['user_role'] == 'admin') {
+            $this->load->module('feedback');
+            $this->load->module('user');
+
+            $feedback_data = $this->feedback->get('feedback_date')->result_array();
+            foreach ($feedback_data as $key => $value) {
+                $query = $this->user->get_where($feedback_data[$key]['user_id'])->result_array()[0];
+                $feedback_data[$key]['user_firstname'] = $query['user_firstname'];
+                $feedback_data[$key]['user_lastname'] = $query['user_lastname'];
+            }
+            
             $data['content_view'] = 'admin/feedback_v';
-            $this->templates->free($data);
+            $data['feedback_data'] = $feedback_data;
+            $this->templates->admin($data);
         } else {
             redirect('/home/logout');
         }

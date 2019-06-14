@@ -28,7 +28,7 @@
         <div id="wrapper" class="animate">
             <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
                 <span class="navbar-toggler-icon leftmenutrigger"></span>
-                <a class="navbar-brand" href="<?php echo base_url('/home'); ?>"><img src="<?php echo base_url('/img/footer-logo.png'); ?>" class="img-responsive" width="20" height="20" />aspero</a><span class="text-white"><?php echo $session_data['user_firstname'];?> Wallet</span> 
+                <a class="navbar-brand" href="<?php echo base_url('/home/'); ?>"><img src="<?php echo base_url('/img/footer-logo.png'); ?>" class="img-responsive" width="20" height="20" />aspero</a><span class="text-white"><?php echo $session_data['user_firstname'];?> Wallet</span> 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -67,8 +67,6 @@
                 e.preventDefault();
             });
         });</script>
-
-
     <script type="text/javascript">
         (function ($) {
             $('#theme_chooser').change(function () {
