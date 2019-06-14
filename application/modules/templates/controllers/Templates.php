@@ -10,12 +10,12 @@ class Templates extends MY_Controller {
         $this->load->view('templates/landing_v',$data);
     }
     
-    function user(){
-        
+    function free($data=null){
+        $this->load->view('templates/free_v',$data);
     }
     
-    function admin(){
-        
+    function admin($data=null){
+        $this->load->view('templates/admin_v',$data);
     }
     
     function provider(){

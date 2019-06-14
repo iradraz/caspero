@@ -48,6 +48,7 @@ class User extends MY_Controller {
 
             $session_data = array(
                 'user_id' => $this->_insert($data),
+                'user_role' => 'free',
                 'user_email' => $data['user_email']
             );
             $this->session->set_userdata($session_data);
@@ -58,8 +59,13 @@ class User extends MY_Controller {
 
     function show_session() {
         $session_data = $this->session->userdata();
-        $last_seen = array('user_last_login' => date("Y-m-d H:i:s"));
-        $this->_update($session_data['user_id'], $last_seen);
+        if (!isset($session_data['user_id'])) {
+            print_r($session_data);
+        } else {
+            $last_seen = array('user_last_login' => date("Y-m-d H:i:s"));
+            $this->_update($session_data['user_id'], $last_seen);
+            print_r($session_data);
+        }
     }
 
     function register() {
@@ -72,21 +78,26 @@ class User extends MY_Controller {
     function login_user() {
         $post_data = $this->input->post();
         $data = $this->get_where_custom('user_email', $post_data['email'])->result_array();
+        if (!isset($data[0])) {
+            session_destroy();
+            redirect('http://iradra.mtacloud.co.il/caspero');
+        }
         if (password_verify($post_data['password'], $data[0]['user_password']) == 1) {
             echo 'can proceed';
             $session_data = array(
                 'user_id' => $data[0]['user_id'],
+                'user_firstname' => $data[0]['user_firstname'],
+                'user_lastname' => $data[0]['user_lastname'],
+                'user_role' => $data[0]['user_role'],
                 'user_email' => $data[0]['user_email']
             );
             $this->session->set_userdata($session_data);
             $last_seen = array('user_last_login' => date("Y-m-d H:i:s"));
             $this->_update($session_data['user_id'], $last_seen);
-            
-            echo '<pre>';
-            print_r($this->session->userdata());
-            echo '</pre>';
+            redirect(base_url('/home/'));
         } else {
-            echo 'login failed';
+            session_destroy();
+            redirect('http://iradra.mtacloud.co.il/caspero');
         }
     }
 

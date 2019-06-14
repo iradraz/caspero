@@ -7,14 +7,33 @@ class Home extends MY_Controller {
     }
 
     function index() {
-        $data['content_view'] = 'home/home_v';
-        //  Modules::run('templates/controller/landing',$data);
-        $this->templates->landing($data);
+        $session_data = $this->session->userdata();
+        if (!isset($session_data['user_role'])) {
+            $session_data['user_role'] = '';
+        }
+
+        if ($session_data['user_role'] == 'free') {
+            $data['content_view'] = 'free/free_home_v';
+            
+            $this->templates->free($data);
+        } else if ($session_data['user_role'] == 'admin') {
+            $data['content_view'] = 'admin/admin_home_v';
+            $this->templates->admin($data);
+        } else {
+            echo 'not logged in';
+            $data['content_view'] = 'home/home_v';
+            $this->templates->landing($data);
+        }
     }
 
     function about() {
         $data['content_view'] = 'home/about_v';
         $this->templates->landing($data);
+    }
+
+    function logout() {
+        session_destroy();
+        redirect('http://iradra.mtacloud.co.il/caspero');
     }
 
     function test() {
