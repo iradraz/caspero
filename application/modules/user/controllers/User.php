@@ -48,12 +48,15 @@ class User extends MY_Controller {
 
             $session_data = array(
                 'user_id' => $this->_insert($data),
+                'user_firstname' => $data['user_firstname'],
+                'user_lastname' => $data['user_lastname'],
                 'user_role' => 'free',
                 'user_email' => $data['user_email']
             );
             $this->session->set_userdata($session_data);
             $last_seen = array('user_last_login' => date("Y-m-d H:i:s"));
             $this->_update($session_data['user_id'], $last_seen);
+            redirect(base_url('/home/'));
         }
     }
 

@@ -1,0 +1,26 @@
+<div class="container contact-form">
+    <form action="<?php echo base_url('/free/feedback'); ?>" method="post">
+        <div class="row justify-content-center ">
+
+            <div class="col-6">
+
+                <div class="contact-image text-center">
+                    <img src="<?php echo base_url('/img/footer-logo.png'); ?>" alt="caspero"/>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Drop Us a Message :)</h5>
+                        <h6 class="card-subtitle mb-6 text-muted"><textarea name="txtmsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea></h6>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-info">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

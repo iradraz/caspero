@@ -1,11 +1,11 @@
-
+<?php $session_data = $this->session->userdata(); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="robots" content="noindex, nofollow"> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
         <style type="text/css">
             body{background:#f9f9f9;}
             #wrapper{padding:90px 15px;}
@@ -21,12 +21,42 @@
             }
             .animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out} </style>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity = "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin = "anonymous">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <title>Caspero Admin Dashboard</title>
     </head>
     <body>
-        <?php
-        $this->load->view($content_view);
-        ?>
+        <div id="wrapper" class="animate">
+            <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
+                <span class="navbar-toggler-icon leftmenutrigger"></span>
+                <a class="navbar-brand" href="<?php echo base_url('/home/'); ?>"><img src="<?php echo base_url('/img/footer-logo.png'); ?>" class="img-responsive" width="20" height="20" />aspero</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav animate side-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo base_url('/'); ?>">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo base_url('/admin/feedback'); ?>">Review Feedbacks</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="<?php //echo base_url('/admin/pricing');  ?>">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo base_url('/home/logout'); ?>">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <?php
+            $this->load->view($content_view);
+            ?>
+        </div>
     </body>
 </html>
