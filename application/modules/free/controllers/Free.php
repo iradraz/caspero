@@ -30,7 +30,11 @@ class Free extends MY_Controller {
             }
         }
     }
-
+    function subscribe(){
+        echo 'thank you!';
+        sleep(1);
+        redirect('/home/');
+    }
     function feedback() {
         $session_data = $this->session->userdata();
         if ($session_data['user_role'] == 'free') {
