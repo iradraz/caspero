@@ -1,5 +1,5 @@
-<div class="row justify-content-md-center">
-    <div class="col-6">
+<div class="row justify-content-center">
+    <div class="col-8">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title text-center">Feedback Section</h5>
@@ -11,9 +11,9 @@
         </div>
     </div>
 </div>
-</div>
-<div class="row justify-content-md-center">
-    <div class="col-6">
+
+<div class="row justify-content-center">
+    <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Feedback List</h5>
@@ -24,7 +24,6 @@
                             <th scope="col">First</th>
                             <th scope="col">Last</th>
                             <th scope="col">Review</th>
-                            <th scope="col">Rank</th>
 
                         </tr>
                     </thead>
@@ -43,5 +42,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

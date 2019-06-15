@@ -1,7 +1,7 @@
 <div class="container contact-form">
     <form action="<?php echo base_url('/free/feedback_post'); ?>" method="post">
         <div class="row justify-content-center ">
-            <div class="col-6">
+            <div class="col-10">
                 <div class="contact-image text-center">
                     <img src="<?php echo base_url('/img/footer-logo.png'); ?>" alt="caspero"/>
                 </div>

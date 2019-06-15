@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-4">
+        <div class="col-6">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Caspero Wallet</h5>
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-6">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Capero Notes</h5>
