@@ -2,7 +2,7 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-//hello
+
 class Mdl_copythis extends CI_Model {
 
     function __construct() {
