@@ -20,7 +20,6 @@ class Home extends MY_Controller {
             $data['content_view'] = 'admin/admin_home_v';
             $this->templates->admin($data);
         } else {
-            echo 'not logged in';
             $data['content_view'] = 'home/home_v';
             $this->templates->landing($data);
         }

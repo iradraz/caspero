@@ -16,6 +16,7 @@
             .header-top{box-shadow: 0 3px 5px rgba(0,0,0,.1)}
             .leftmenutrigger{display: none}
             @media(min-width:992px) {
+
                 .leftmenutrigger{display: block;display: block;margin: 7px 20px 4px 0;cursor: pointer;}
                 #wrapper{padding: 90px 15px 15px 15px; }
                 .navbar-nav.side-nav.open {left:0;}
@@ -25,7 +26,9 @@
             @media (max-width: 992px) {
                 .navbar-toggler-icon.leftmenutrigger{display:none;}
             }
-            .animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out} </style>
+            .animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out} 
+
+        </style>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity = "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin = "anonymous">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -49,9 +52,17 @@
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo base_url('/free/wallet'); ?>">My Wallet</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('/free/deposit'); ?>">Deposit Funds</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('/free/exchange'); ?>">Exchange Funds</a>
+                            </li>                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('/free/withdraw'); ?>">Withdraw Funds</a>
                             </li>
                             <hr>
                             <li class="nav-item">

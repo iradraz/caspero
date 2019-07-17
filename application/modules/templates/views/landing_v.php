@@ -18,7 +18,7 @@
 
 
                     </header>
-                    <main class="jumbotron jumbotron-fluid mt-3">
+                    <main class="jumbotron">
                         
                         <?php //redirect('../caspero_backup');
                         $this->load->view($content_view);

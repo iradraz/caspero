@@ -7,14 +7,22 @@
         </div>
     </div>
     <h3 class="text-center text-primary">Add funds into your account</h3>
-    <form action="<?php echo base_url('/free/add_funds/2'); ?>" method="post">
+    <form action="<?php echo base_url('/free/deposit/2'); ?>" method="post">
         <div class="form-group text-info col-md-6">
             <label for="currency">Select Deposit Currency:</label>
             <select name="currency" style="display: block">
-                <option value="<?php echo isset( $post_data['currency']); ?>" selected hidden><?php echo isset( $post_data['currency']); ?></option>
+                <?php
+                if (isset($post_data['currency'])) {
+                    $currency = $post_data['currency'];
+                } else{
+                    $currency = 'USD';
+                }
+                ?>
+                <option value="<?php echo $currency ?>" selected hidden><?php echo $currency ?></option>
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
                 <option value="GBP">GBP</option>
+                <option value="ILS">ILS</option>
                 <option value="CAD">CAD</option>
                 <option value="JPY">JPY</option>
             </select>
@@ -27,12 +35,12 @@
         </div>
         <div class="form-group text-info col-md-6">
             <label for="creditcard">Credit Card Info:</label>
-            <input type="" class="form-control" id="amount" placeholder="Credit Card #" name="creditcard">
+            <input type="" class="form-control" id="amount" placeholder="Credit Card #" name="creditcard" disabled>
             <label for="exp_date">Expiration Date:</label>
-            <input type="number" step="1" min="1" max="12" class="form-control" id="expmm" placeholder="Expiration Month" name="exp_date_mm">
-            <input type="number" step="1" min="2014" max="2040" class="form-control" id="expyyyy" placeholder="Expiration Year" name="exp_date_yyyy">
+            <input type="number" step="1" min="1" max="12" class="form-control" id="expmm" placeholder="Expiration Month" name="exp_date_mm" disabled>
+            <input type="number" step="1" min="2014" max="2040" class="form-control" id="expyyyy" placeholder="Expiration Year" name="exp_date_yyyy" disabled>
             <label for="exp_date">CVV:</label>
-            <input type="number" step="1" min="100" max="999" class="form-control" id="cvv" placeholder="CVV" name="cvv">
+            <input type="number" step="1" min="100" max="999" class="form-control" id="cvv" placeholder="CVV" name="cvv" disabled>
         </div>
         <ul>
             <div>

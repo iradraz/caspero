@@ -44,10 +44,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('/admin/transactions'); ?>">Review Transactions</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="<?php echo base_url('/admin/feedback'); ?>">Review Feedbacks</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link disabled" href="<?php //echo base_url('/admin/pricing');     ?>">Pricing</a>
+                                <a class="nav-link disabled" href="<?php //echo base_url('/admin/pricing');      ?>">Pricing</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo base_url('/home/logout'); ?>">Logout</a>

@@ -8,27 +8,34 @@ class Admin extends MY_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->load->module('security');
+        $this->load->module('transactions');
+    }
+
+    function transactions() {
+        $this->security->security_test('admin');
+        $session_data = $this->session->userdata();
+        $data['transactions'] = $this->transactions->get('transaction_id')->result_array();
+        $data['content_view'] = 'admin/transactions_v';
+        $this->templates->admin($data);
     }
 
     function feedback() {
+        $this->security->security_test('admin');
         $session_data = $this->session->userdata();
-        if ($session_data['user_role'] == 'admin') {
-            $this->load->module('feedback');
-            $this->load->module('user');
 
-            $feedback_data = $this->feedback->get('feedback_date')->result_array();
-            foreach ($feedback_data as $key => $value) {
-                $query = $this->user->get_where($feedback_data[$key]['user_id'])->result_array()[0];
-                $feedback_data[$key]['user_firstname'] = $query['user_firstname'];
-                $feedback_data[$key]['user_lastname'] = $query['user_lastname'];
-            }
-            
-            $data['content_view'] = 'admin/feedback_v';
-            $data['feedback_data'] = $feedback_data;
-            $this->templates->admin($data);
-        } else {
-            redirect('/home/logout');
+        $this->load->module('feedback');
+        $this->load->module('user');
+        $feedback_data = $this->feedback->get('feedback_date')->result_array();
+        foreach ($feedback_data as $key => $value) {
+            $query = $this->user->get_where($feedback_data[$key]['user_id'])->result_array()[0];
+            $feedback_data[$key]['user_firstname'] = $query['user_firstname'];
+            $feedback_data[$key]['user_lastname'] = $query['user_lastname'];
         }
+
+        $data['content_view'] = 'admin/feedback_v';
+        $data['feedback_data'] = $feedback_data;
+        $this->templates->admin($data);
     }
 
     function get($order_by) {

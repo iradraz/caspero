@@ -32,7 +32,7 @@
                     <h5 class="card-title">Caspero Wallet</h5>
                     <h6 class="card-subtitle mb-2 text-muted"></h6>
                     <p class="card-text">Add funds to your account</p>
-                    <a href="<?php echo base_url('/free/add_funds'); ?>" class="card-link">Add funds!</a>
+                    <a href="<?php echo base_url('/free/deposit'); ?>" class="card-link">Add funds!</a>
                 </div>
             </div>
         </div>

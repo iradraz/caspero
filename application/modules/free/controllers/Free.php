@@ -5,6 +5,8 @@ class Free extends MY_Controller {
     function __construct() {
         parent::__construct();
         $this->load->module('security');
+        $this->load->module('user');
+        $this->load->module('transactions');
     }
 
     function feedback_post() {
@@ -43,11 +45,31 @@ class Free extends MY_Controller {
         $this->security->security_test('free');
 
         $session_data = $this->session->userdata();
+        $data['user_data'] = $this->user->get_where_custom('user_id', $session_data['user_id'])->result_array();
+        $data['transactions'] = $this->transactions->get_where_custom('user_id', $session_data['user_id'])->result_array();
+//                echo '<pre>';
+//        print_r($data['transactions']);
+//        echo '</pre>';
+//        die;
         $data['content_view'] = 'free/wallet_v';
         $this->templates->free($data);
     }
 
-    function add_funds() {
+    function exchange() {
+        $this->security->security_test('free');
+
+        $session_data = $this->session->userdata();
+        echo 'exchange page will come here';
+    }
+
+    function withdraw() {
+        $this->security->security_test('free');
+
+        $session_data = $this->session->userdata();
+        echo 'withdraw page will come here';
+    }
+
+    function deposit() {
         $this->security->security_test('free');
 
         $session_data = $this->session->userdata();
@@ -62,13 +84,21 @@ class Free extends MY_Controller {
 
             $data['post_data'] = $post_data;
             $session_data = $this->session->userdata();
-            if ($session_data['user_role'] == 'free') {
-                $data['content_view'] = 'free/add_funds_step_2_v';
-                $this->templates->free($data);
-            } else {
-                redirect('/home/logout');
-            }
+            //  if ($session_data['user_role'] == 'free') {
+            $data['content_view'] = 'free/add_funds_step_2_v';
+            $this->templates->free($data);
+            // } else {
+            //     redirect('/home/logout');
+            // }
         }
+    }
+
+    function settings() {
+        $this->security->security_test('free');
+
+        $session_data = $this->session->userdata();
+        echo 'settings page will come here';
+        
     }
 
     function use_soap() {
@@ -113,10 +143,18 @@ class Free extends MY_Controller {
             $this->load->module('user');
             $user_data = $this->user->get_where_custom('user_id', $session_data['user_id'])->result_array();
             $current_status = $user_data[0]['user_' . strtolower($post_data['currency'])];
-            //  echo '<pre>';print_r($current_status);echo '</pre>';
-            //  die;
             $this->user->_update($session_data['user_id'], array('user_' . strtolower($post_data['currency']) => $current_status + $post_data['amount']));
             $data['content_view'] = 'free/transaction_success_v';
+            $data['amount'] = $post_data['amount'];
+            $data['currency'] = $post_data['currency'];
+            //add here insertion into log table, and add jquery ajax call in the admin review table
+            $this->transactions->_insert(
+                    array(
+                        'user_id' => $session_data['user_id'],
+                        'currency' => $data['currency'],
+                        'amount' => $data['amount']
+                    )
+            );
             $this->templates->free($data);
         }
         /*
