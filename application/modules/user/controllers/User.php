@@ -10,8 +10,9 @@ class User extends MY_Controller {
         parent::__construct();
     }
 
-    function index() {
-        
+    function index() { 
+     //   $data['content_view'] = 'user/login_v';
+     //   $this->templates->temp($data);
     }
 
     private function hash_password($password) {

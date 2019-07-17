@@ -6,6 +6,7 @@
         <meta name="robots" content="noindex, nofollow"> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style type="text/css">
+            header{margin-top:50px;text-align: center; font-size:50px; font-weight: bold;}
             body{background:#f9f9f9;}
             #wrapper{padding:90px 15px;}
             .navbar-expand-lg .navbar-nav.side-nav{flex-direction: column;}
@@ -25,38 +26,43 @@
         <title>Caspero Admin Dashboard</title>
     </head>
     <body>
+        <header>Admin Dashboard</header>
         <div id="wrapper" class="animate">
-            <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
-                <span class="navbar-toggler-icon leftmenutrigger"></span>
-                <a class="navbar-brand" href="<?php echo base_url('/home/'); ?>"><img src="<?php echo base_url('/img/footer-logo.png'); ?>" class="img-responsive" width="20" height="20" />aspero</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav animate side-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('/'); ?>">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('/admin/feedback'); ?>">Review Feedbacks</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="<?php //echo base_url('/admin/pricing');   ?>">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('/home/logout'); ?>">Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-            <?php
-            $this->load->view($content_view);
-            ?>
+            <aside>
+                <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
+                    <span class="navbar-toggler-icon leftmenutrigger"></span>
+                    <a class="navbar-brand" href="<?php echo base_url('/home/'); ?>"><img src="<?php echo base_url('/img/footer-logo.png'); ?>" class="img-responsive" width="20" height="20" />aspero</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav animate side-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('/'); ?>">Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('/admin/feedback'); ?>">Review Feedbacks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="<?php //echo base_url('/admin/pricing');     ?>">Pricing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('/home/logout'); ?>">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+            <main>
+                <?php
+                $this->load->view($content_view);
+                ?>
+            </main>
         </div>
+        <footer><h2 class="text-center text-primary">IraDariNaama</h2></footer>
     </body>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -73,4 +79,5 @@
             });
         })(jQuery);
     </script>
+
 </html>

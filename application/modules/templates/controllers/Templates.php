@@ -17,9 +17,8 @@ class Templates extends MY_Controller {
     function admin($data=null){
         $this->load->view('templates/admin_v',$data);
     }
-    
-    function provider(){
-        
-    }
 
+    function temp($data=null) {
+        $this->load->view('templates/temp_v',$data);
+    }
 }

@@ -10,10 +10,6 @@ class Admin extends MY_Controller {
         parent::__construct();
     }
 
-    function index() {
-        echo '!';
-    }
-
     function feedback() {
         $session_data = $this->session->userdata();
         if ($session_data['user_role'] == 'admin') {

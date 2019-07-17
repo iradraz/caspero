@@ -6,7 +6,10 @@
         <meta name="robots" content="noindex, nofollow"> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style type="text/css">
-            body{background:#f9f9f9;}
+            header{margin-top:50px;text-align: center; font-size:50px; font-weight: bold;}
+            body{
+                background-image: url("<?php echo base_url('img/stock.jpg') ?>");
+            }
             #wrapper{padding:90px 15px;}
             .navbar-expand-lg .navbar-nav.side-nav{flex-direction: column;}
             .card{margin-bottom: 15px; border-radius:0; box-shadow: 0 3px 5px rgba(0,0,0,.1); }
@@ -16,7 +19,11 @@
                 .leftmenutrigger{display: block;display: block;margin: 7px 20px 4px 0;cursor: pointer;}
                 #wrapper{padding: 90px 15px 15px 15px; }
                 .navbar-nav.side-nav.open {left:0;}
+                .leftmenutrigger{display:none;}
                 .navbar-nav.side-nav{background: #585f66;box-shadow: 2px 1px 2px rgba(0,0,0,.1);position:fixed;top:56px;flex-direction: column!important;left:-220px;width:200px;overflow-y:auto;bottom:0;overflow-x:hidden;padding-bottom:40px}
+            }
+            @media (max-width: 992px) {
+                .navbar-toggler-icon.leftmenutrigger{display:none;}
             }
             .animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out} </style>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -25,34 +32,41 @@
         <title>Caspero</title>
     </head>
     <body>
+        <header class="text-info">Hello <?php echo $session_data['user_firstname']; ?></header>
         <div id="wrapper" class="animate">
-            <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
-                <span class="navbar-toggler-icon leftmenutrigger"></span>
-                <a class="navbar-brand" href="<?php echo base_url('/home/'); ?>"><img src="<?php echo base_url('/img/footer-logo.png'); ?>" class="img-responsive" width="20" height="20" />aspero</a><span class="text-white"><?php echo $session_data['user_firstname'];?> Wallet</span> 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav animate side-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('/'); ?>">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('/free/feedback'); ?>">Feedback</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="<?php //echo base_url('/free/dashboard'); ?>">My Wallet</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url('/home/logout'); ?>">Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <aside>
+                <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
+                    <span class="navbar-toggler-icon leftmenutrigger"></span>
+                    <a class="navbar-brand" href="<?php echo base_url('/home/'); ?>"><img src="<?php echo base_url('/img/footer-logo.png'); ?>" class="img-responsive" width="20" height="20" />aspero</a><span class="text-white"><?php echo $session_data['user_firstname']; ?> Wallet</span> 
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav animate side-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('/'); ?>">Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('/free/wallet'); ?>">My Wallet</a>
+                            </li>
+                            <hr>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('/free/feedback'); ?>">Feedback</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('/free/settings'); ?>">Settings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo base_url('/home/logout'); ?>">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
             <?php
             $this->load->view($content_view);
             ?>
@@ -67,12 +81,5 @@
                 e.preventDefault();
             });
         });</script>
-    <script type="text/javascript">
-        (function ($) {
-            $('#theme_chooser').change(function () {
-                whichCSS = $(this).val();
-                document.getElementById('snippet-preview').contentWindow.changeCSS(whichCSS);
-            });
-        })(jQuery);
-    </script>
+
 </html>
