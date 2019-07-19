@@ -98,38 +98,36 @@ class Free extends MY_Controller {
 
         $session_data = $this->session->userdata();
         echo 'settings page will come here';
-        
     }
 
-    function use_soap() {
-        // $client = new SoapClient('https://corporate-uat.globalreachgroup.com/tradeservice.asmx?wsdl');
-        //$date = '2017-10-30';
-        // $result = $client->Get_Currencies(array('ClientLogin' => 'TEST3019', 'UserName' => 'admin', 'Password' => 'Welcome2016!', 'GroupID' => 1, 'ErrorMsg' => 'a'));
-        // $result = $client->Get_Rate(array('ClientLogin' => 'TEST3019', 'UserName' => 'admin', 'Password' => 'Welcome2016!', 'GroupID' => 1, 'objRate' => array('BuyAmount' > '100', 'SellCurr' => 'GBP', 'BuyCurr' => 'USD', 'ValueDate' => $date)));
-// From URL to get webpage contents. 
-        $url = "https://devapi.currencycloud.com/v2/authenticate/api";
+    function use_curl2() {
+
+        $url = "https://api.sandbox.transferwise.tech/v1/profiles";
 
         $curl = curl_init();
-// Set some options - we are passing in a useragent too here
+        $headers = [
+            "Authorization: Bearer 140bef54-a3c6-4fb5-ad43-4a07cc1a8700"
+        ];
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt_array($curl, [
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => $url,
-            CURLOPT_USERAGENT => 'Codular Sample cURL Request',
-            CURLOPT_POST => 1,
-            CURLOPT_POSTFIELDS => [
-                'login_id' => 'iradra@mta.ac.il',
-                'api_key' => 'c3355e7a58cceaa964baa867e7b5db23dd8f3a9129aac698ccaf93c247e2613b'
-            ]
+            CURLOPT_POST => 0,
+            //CURLOPT_USERPWD => "111111:140bef54-a3c6-4fb5-ad43-4a07cc1a8700",
+            CURLOPT_HTTPHEADER => $headers
         ]);
 // Send the request & save response to $resp
         $resp = curl_exec($curl);
 // Close request to clear up some resources
         curl_close($curl);
-        echo '<pre>';
+        // echo '<pre>';
         print_r($resp);
-        echo '</pre>';
+        //  echo '</pre>';
         //  curl_close($ch);
     }
+
+
 
     function transaction() {
         $this->security->security_test('free');

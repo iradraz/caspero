@@ -37,7 +37,6 @@
     <body>
         <header class="text-info">Hello <?php echo $session_data['user_firstname']; ?></header>
         <div id="wrapper" class="animate">
-            <aside>
                 <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
                     <span class="navbar-toggler-icon leftmenutrigger"></span>
                     <a class="navbar-brand" href="<?php echo base_url('/home/'); ?>"><img src="<?php echo base_url('/img/footer-logo.png'); ?>" class="img-responsive" width="20" height="20" />aspero</a><span class="text-white"><?php echo $session_data['user_firstname']; ?> Wallet</span> 
@@ -77,7 +76,6 @@
                         </ul>
                     </div>
                 </nav>
-            </aside>
             <?php
             $this->load->view($content_view);
             ?>
