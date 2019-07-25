@@ -59,7 +59,9 @@ class Free extends MY_Controller {
         $this->security->security_test('free');
 
         $session_data = $this->session->userdata();
-        echo 'exchange page will come here';
+        
+        $data['content_view'] = 'free/start_exchange_v';
+        $this->templates->free($data);
     }
 
     function withdraw() {
@@ -87,9 +89,6 @@ class Free extends MY_Controller {
             //  if ($session_data['user_role'] == 'free') {
             $data['content_view'] = 'free/add_funds_step_2_v';
             $this->templates->free($data);
-            // } else {
-            //     redirect('/home/logout');
-            // }
         }
     }
 
@@ -126,8 +125,6 @@ class Free extends MY_Controller {
         //  echo '</pre>';
         //  curl_close($ch);
     }
-
-
 
     function transaction() {
         $this->security->security_test('free');

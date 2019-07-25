@@ -8,7 +8,7 @@
     </div>
     <h3 class="text-center text-primary">Add funds into your account</h3>
     <form action="<?php echo base_url('/free/deposit/2'); ?>" method="post">
-        <div class="form-group text-info col-md-6">
+        <div class="form-group text-info col-md-8">
             <label for="currency">Select Deposit Currency:</label>
             <select name="currency" style="display: block">
                 <?php
