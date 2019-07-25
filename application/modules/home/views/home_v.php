@@ -8,6 +8,6 @@
     </div>
     <ul class="main-menu__list text-center">
         <a href="<?php echo base_url('/user/login'); ?>" class="btn btn-primary btn-md">LOGIN</a>
-        <a href="<?php echo base_url('user/register'); ?>" class="btn btn-primary btn-md">register NEW ACCOUNT</a>
+        <a href="<?php echo base_url('user/register'); ?>" class="btn btn-primary btn-md">REGISTER NEW ACCOUNT</a>
     </ul>
 </div>
